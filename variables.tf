@@ -6,7 +6,7 @@ variable "aciUser" {
   default = "apic:backmeup\\\\admin"
 }
 
-variable "password" =  {
+variable "password" {
   default = "C!sco12345Fallback"
 }
 
