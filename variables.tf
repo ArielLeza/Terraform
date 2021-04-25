@@ -11,11 +11,11 @@ variable "password" {
 }
 
 variable "aciPrivateKey" {
-  default = "ansible.key"
+  default = ""
 }
 
 variable "aciCertName" {
-  default = "ansible"
+  default = ""
 }
 
 variable "aciUrl" {

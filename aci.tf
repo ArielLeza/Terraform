@@ -23,7 +23,7 @@ resource "aci_tenant" "demo" {
 
 resource "aci_vrf" "vrf1" {
   tenant_dn = aci_tenant.demo.id
-  name      = "vrf1"
+  name      = "VRF-Prod"
 }
 
 resource "aci_bridge_domain" "bd1" {
@@ -85,7 +85,7 @@ resource "aci_rest" "bd2public" {
 
 resource "aci_application_profile" "app1" {
   tenant_dn = aci_tenant.demo.id
-  name      = "app1"
+  name      = "CtoBeLike_APP"
 }
 
 data "aci_vmm_domain" "vds" {
@@ -95,7 +95,7 @@ data "aci_vmm_domain" "vds" {
 
 resource "aci_application_epg" "epg1" {
   application_profile_dn = aci_application_profile.app1.id
-  name                   = "epg1"
+  name                   = "FrontEnd_EPG"
   relation_fv_rs_bd      = aci_bridge_domain.bd1.id
   relation_fv_rs_cons    = [aci_contract.contract_epg1_epg2.id, data.aci_contract.default.id]
 }
@@ -124,7 +124,7 @@ resource "aci_epg_to_domain" "vmmepg2" {
 
 resource "aci_application_epg" "epg2" {
   application_profile_dn = aci_application_profile.app1.id
-  name                   = "epg2"
+  name                   = "DataBase"
   relation_fv_rs_bd      = aci_bridge_domain.bd2.id
   relation_fv_rs_prov    = [aci_contract.contract_epg1_epg2.id]
   relation_fv_rs_cons    = [data.aci_contract.default.id]
@@ -132,7 +132,7 @@ resource "aci_application_epg" "epg2" {
 
 resource "aci_contract" "contract_epg1_epg2" {
   tenant_dn = aci_tenant.demo.id
-  name      = "Web"
+  name      = "CryptoMineSecurityPolicy_Con"
 }
 
 
