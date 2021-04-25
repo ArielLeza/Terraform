@@ -3,7 +3,11 @@ variable "tenantName" {
 }
 
 variable "aciUser" {
-  default = "ansible"
+  default = "apic:backmeup\\\\admin"
+}
+
+variable "password" =  {
+  default = "C!sco12345Fallback"
 }
 
 variable "aciPrivateKey" {
