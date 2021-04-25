@@ -42,5 +42,5 @@ variable "vmmDomain" {
 }
 
 variable "l3OutName" {
-  default = "internet"
+  default = "L3-Out-Internet"
 }
