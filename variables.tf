@@ -1,5 +1,5 @@
 variable "tenantName" {
-  default = "pvtoctober"
+  default = "TfCloudFTW"
 }
 
 variable "aciUser" {
@@ -38,7 +38,7 @@ variable "provider_profile_dn" {
 }
 
 variable "vmmDomain" {
-  default = "vc7"
+  default = "hxebc"
 }
 
 variable "l3OutName" {
