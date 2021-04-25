@@ -15,7 +15,7 @@ variable "aciCertName" {
 }
 
 variable "aciUrl" {
-  default = "https://10.48.168.221"
+  default = "https://192.118.76.196"
 }
 
 variable "bd1Subnet" {
