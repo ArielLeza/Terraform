@@ -1,0 +1,256 @@
+{
+  "ClassId": {
+    "description": "The fully-qualified name of the instantiated, concrete type.\nThis property is used as a discriminator to identify the type of the payload\nwhen marshaling and unmarshaling data.\nThe enum values provides the list of concrete types that can be instantiated from this abstract type.",
+    "enum": [
+      "chassis.IomProfile",
+      "chassis.Profile",
+      "fabric.SwitchClusterProfile",
+      "fabric.SwitchProfile",
+      "hyperflex.ClusterProfile",
+      "hyperflex.NodeProfile",
+      "kubernetes.AciCniProfile",
+      "kubernetes.ClusterProfile",
+      "kubernetes.NodeGroupProfile",
+      "kubernetes.VirtualMachineNodeProfile",
+      "recovery.BackupProfile",
+      "sdwan.Profile",
+      "server.Profile",
+      "server.ProfileTemplate"
+    ],
+    "x-enum-as-string": true
+  },
+  "ObjectType": {
+    "description": "The fully-qualified name of the instantiated, concrete type.\nThe value should be the same as the 'ClassId' property.\nThe enum values provides the list of concrete types that can be instantiated from this abstract type.",
+    "enum": [
+      "chassis.IomProfile",
+      "chassis.Profile",
+      "fabric.SwitchClusterProfile",
+      "fabric.SwitchProfile",
+      "hyperflex.ClusterProfile",
+      "hyperflex.NodeProfile",
+      "kubernetes.AciCniProfile",
+      "kubernetes.ClusterProfile",
+      "kubernetes.NodeGroupProfile",
+      "kubernetes.VirtualMachineNodeProfile",
+      "recovery.BackupProfile",
+      "sdwan.Profile",
+      "server.Profile",
+      "server.ProfileTemplate"
+    ],
+    "x-enum-as-string": true
+  },
+  "Description": {
+    "description": "Description of the profile.",
+    "type": "string",
+    "pattern": "^$|^[a-zA-Z0-9]+[\\sa-zA-Z0-9_'.:-]*$",
+    "maxLength": 1024,
+    "x-omitempty": true,
+    "x-since": "2017-11-06"
+  },
+  "Name": {
+    "description": "Name of the profile instance or profile template.",
+    "type": "string",
+    "pattern": "^[a-zA-Z0-9_.-]{1,64}$",
+    "x-omitempty": true,
+    "x-since": "2017-07-11"
+  },
+  "Type": {
+    "description": "Defines the type of the profile. Accepted values are instance or template.\n* `instance` - The profile defines the configuration for a specific instance of a target.",
+    "type": "string",
+    "enum": [
+      "instance"
+    ],
+    "default": "instance",
+    "x-omitempty": true,
+    "x-since": "2017-10-02"
+  },
+  "SrcTemplate": {
+    "$ref": "#/components/schemas/policy.AbstractProfile.Relationship",
+    "description": "A reference to a policyAbstractProfile resource.\nWhen the $expand query parameter is specified, the referenced resource is returned inline.",
+    "x-since": "2017-10-02"
+  }
+}
+
+"kubernetes.AciCniProfile": {
+  "title": "ACI Container Network Interface Profile",
+  "description": "Configuration for an ACI CNI profile.",
+  "x-since": "2020-12-04",
+  "x-allOf-name": "kubernetes.AciCniProfile",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/policy.AbstractProfile"
+    },
+    {
+      "type": "object",
+      "description": "Definition of the list of properties defined in 'kubernetes.AciCniProfile', excluding properties defined in parent classes.",
+      "required": [
+        "ClassId",
+        "ObjectType"
+      ],
+      "properties": {
+        "ClassId": {
+          "description": "The fully-qualified name of the instantiated, concrete type.\nThis property is used as a discriminator to identify the type of the payload\nwhen marshaling and unmarshaling data.",
+          "enum": [
+            "kubernetes.AciCniProfile"
+          ],
+          "default": "kubernetes.AciCniProfile",
+          "x-enum-as-string": true
+        },
+        "ObjectType": {
+          "description": "The fully-qualified name of the instantiated, concrete type.\nThe value should be the same as the 'ClassId' property.",
+          "enum": [
+            "kubernetes.AciCniProfile"
+          ],
+          "default": "kubernetes.AciCniProfile",
+          "x-enum-as-string": true
+        },
+        "AaepName": {
+          "description": "Name of ACI AAEP (Attachable Access Entity Profile) to be used for all Kubernetes clusters using this policy.",
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "ExtSvcDynSubnetStart": {
+          "description": "Start of range of IP subnets for external services with dynamic IP allocation for use by Kubernetes clusters using this ACI CNI policy.",
+          "type": "string",
+          "pattern": "^$|^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\/([0-9]|[1-2][0-9]|3[0-2])$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "ExtSvcStaticSubnetStart": {
+          "description": "Start of range of IP subnets for external services with static IP allocation for use by Kubernetes clusters using this ACI CNI policy.",
+          "type": "string",
+          "pattern": "^$|^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\/([0-9]|[1-2][0-9]|3[0-2])$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "InfraVlanId": {
+          "description": "Value of ACI infrastructuere VLAN ID for the ACI fabric.",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true,
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "L3OutNetworkName": {
+          "description": "Name of ACI L3Out network to be used for all Kubernetes clusters using this policy.",
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "L3OutPolicyName": {
+          "description": "Name of ACI L3Out policy to be used for all Kubernetes clusters using this policy.",
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "L3OutTenant": {
+          "description": "Tenant in ACI used by this L3Out and Common VRF.",
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "NestedVmmDomain": {
+          "description": "VMM domain within which Kubernetes clusters using this policy are nested.",
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "NodeSvcSubnetStart": {
+          "description": "Start of range of ACI Node Service IP subnets to use by Kubernetes clusters using this ACI CNI policy This is used for the service graph which is used for ACI PBR based load balancing.",
+          "type": "string",
+          "pattern": "^$|^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\/([0-9]|[1-2][0-9]|3[0-2])$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "NodeVlanRangeEnd": {
+          "description": "Ending value of VLAN range used to assign Node VLAN Ids for each Kubernetes cluster using this policy.",
+          "type": "integer",
+          "format": "int64",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "NodeVlanRangeStart": {
+          "description": "Starting value of VLAN range used to assign Node VLAN Ids for each Kubernetes cluster using this policy.",
+          "type": "integer",
+          "format": "int64",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "NumberOfKubernetesClusters": {
+          "description": "Number of k8s clusters currently using this ACI CNI profile.",
+          "type": "integer",
+          "format": "int64",
+          "readOnly": true,
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "OpflexMulticastAddressRange": {
+          "description": "Range of IP Multicast addresses to be used by the Opflex protocol for Kubernetes clusters using this policy.",
+          "type": "string",
+          "pattern": "^$|^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\/([0-9]|[1-2][0-9]|3[0-2])$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "PodSubnetStart": {
+          "description": "Start of range of Kubernetes pod IP subnets to use by Kubernetes clusters using this ACI CNI policy This should be a /8 IP subnet so that multiple /16 subnets can be assigned for pod subnets of Kubernetes clusters using this profile.",
+          "type": "string",
+          "pattern": "^$|^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\/([0-9]|[1-2][0-9]|3[0-2])$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "SvcSubnetStart": {
+          "description": "Start of range of Kubernetes Service IP subnets to use by Kubernetes clusters using this ACI CNI policy Currently this is fixed internally and read-only.",
+          "type": "string",
+          "pattern": "^$|^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]).([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\/([0-9]|[1-2][0-9]|3[0-2])$",
+          "readOnly": true,
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "Vrf": {
+          "description": "VRF (Virtual Routing and Forwarding) domain to be used within ACI fabric by all k8s clusters using this policy.",
+          "type": "string",
+          "pattern": "^$|^[a-zA-Z0-9][a-zA-Z0-9-_]*[a-zA-Z0-9]$",
+          "x-omitempty": true,
+          "x-since": "2020-12-04"
+        },
+        "ClusterAciAllocations": {
+          "description": "An array of relationships to kubernetesAciCniTenantClusterAllocation resources.",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/kubernetes.AciCniTenantClusterAllocation.Relationship"
+          },
+          "nullable": true,
+          "readOnly": true,
+          "x-since": "2020-12-04"
+        },
+        "ClusterProfiles": {
+          "description": "An array of relationships to kubernetesClusterProfile resources.",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/kubernetes.ClusterProfile.Relationship"
+          },
+          "nullable": true,
+          "readOnly": true,
+          "x-since": "2020-12-04"
+        },
+        "Organization": {
+          "$ref": "#/components/schemas/organization.Organization.Relationship",
+          "description": "A reference to a organizationOrganization resource.\nWhen the $expand query parameter is specified, the referenced resource is returned inline.",
+          "x-createOnly": true
+        },
+        "RegisteredDevice": {
+          "$ref": "#/components/schemas/asset.DeviceRegistration.Relationship",
+          "description": "A reference to a assetDeviceRegistration resource.\nWhen the $expand query parameter is specified, the referenced resource is returned inline.",
+          "x-createOnly": true,
+          "x-since": "2020-12-04"
+        }
+      }
+    }
+  ]
+},
